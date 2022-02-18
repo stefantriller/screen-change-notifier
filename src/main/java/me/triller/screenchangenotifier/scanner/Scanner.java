@@ -21,7 +21,7 @@ public class Scanner {
     private int[] prevPos = new int[2];
     private int[] prevRGBA = new int[4];
 
-    @Scheduled(initialDelay = 5000, fixedDelay = 1000)
+    @Scheduled(initialDelay = 5000, fixedDelay = 10000)
     public void scheduledScan() {
         try {
             doScan();
@@ -45,8 +45,8 @@ public class Scanner {
         } else {
             Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
             BufferedImage img = new Robot().createScreenCapture(screenRect);
-            FastRGB fastRGB = new FastRGB(img);
-            int[] rgba = fastRGB.getRGBA(pos[0], pos[1]);
+            BufferedImageProcessor bufferedImageProcessor = new BufferedImageProcessor(img);
+            int[] rgba = bufferedImageProcessor.getRGBA(pos[0], pos[1]);
 
             System.out.println("Scanning...");
             if (isTriggered(pos, rgba)) {

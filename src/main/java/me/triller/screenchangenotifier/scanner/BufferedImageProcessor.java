@@ -1,20 +1,16 @@
 package me.triller.screenchangenotifier.scanner;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
 import java.awt.image.DataBufferInt;
 
-/**
- * https://stackoverflow.com/a/26713029
- */
-public class FastRGB {
+public class BufferedImageProcessor {
 
     private final int width;
     private final int height;
     private final boolean hasAlphaChannel;
     private final int[] pixels;
 
-    public FastRGB(BufferedImage image) {
+    public BufferedImageProcessor(BufferedImage image) {
         pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
         width = image.getWidth();
         height = image.getHeight();
